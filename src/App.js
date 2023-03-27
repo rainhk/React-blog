@@ -8,6 +8,7 @@ function App() {
 
   let [coat, setCoat] = useState(['남자 코트 추천', '여자 코트 추천', '아이 코트 추천']);
   let [good, good_i] = useState(0);
+  let [modal, setModal] = useState(false);
 
   return (
     <div className="App">
@@ -39,11 +40,37 @@ function App() {
         <p>1/4/2023</p>
       </div>
       <div className='list'>
-        <h4>{coat[2]}</h4>
+        <h4 onClick={()=> {
+          // same as if and else
+          setModal(!modal)
+          // if(modal){
+          //   setModal(false)
+          // }
+          // else {
+          //   setModal(true)
+          // }
+          }}>{coat[2]}</h4>
         <p>1/4/2023</p>
       </div>
+      
+      {
+        modal == true ? <Modal></Modal> : null
+      }
     </div>
   );
+}
+
+// const Modal = () => {}
+
+// how to make components
+function Modal(){
+  return (
+      <div className='modal'>
+        <h4> title </h4>
+        <p> date </p>
+        <p> details </p>
+      </div>
+  )
 }
 
 export default App;
