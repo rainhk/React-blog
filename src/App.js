@@ -68,7 +68,7 @@ function App() {
       }
 
       {
-        modal == true ? <Modal></Modal> : null
+        modal == true ? <Modal color={'skyblue'} coat={coat}></Modal> : null
       }
     </div>
   );
@@ -77,12 +77,13 @@ function App() {
 // const Modal = () => {}
 
 // how to make components
-function Modal(){
+function Modal(props){
   return (
-      <div className='modal'>
-        <h4> title </h4>
+      <div className='modal' style={{background : props.color}}>
+        <h4> {props.coat[0]} </h4>
         <p> date </p>
         <p> details </p>
+        <button> fix </button>
       </div>
   )
 }
