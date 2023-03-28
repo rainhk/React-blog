@@ -7,7 +7,7 @@ function App() {
   let post = '강남 우동 맛집';
 
   let [coat, setCoat] = useState(['남자 코트 추천', '여자 코트 추천', '아이 코트 추천']);
-  let [good, good_i] = useState(0);
+  let [good, good_i] = useState([0,0,0]);
   let [modal, setModal] = useState(false);
 
   return (
@@ -31,7 +31,7 @@ function App() {
         
         }}> change language </button>
 
-      <div className='list'>
+      {/* <div className='list'>
         <h4>{coat[0]} <span onClick={() => {good_i(good+1)}}>👍</span> {good} </h4>
         <p>1/4/2023</p>
       </div>
@@ -51,8 +51,22 @@ function App() {
           // }
           }}>{coat[2]}</h4>
         <p>1/4/2023</p>
-      </div>
+      </div> */}
       
+      {
+        coat.map(function(a, i){
+          return (
+          <div className='list' key={i}>
+          <h4 onClick={()=> {setModal(!modal)}}> {coat[i]} <span onClick={() => {
+            let copy = [...good];
+            copy[i] = copy[i] + 1;
+            good_i(copy);  
+          }}>👍</span> {good[i]} </h4>
+          <p>1/4/2023</p>
+        </div>)
+        })
+      }
+
       {
         modal == true ? <Modal></Modal> : null
       }
