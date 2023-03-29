@@ -68,7 +68,7 @@ function App() {
       }
 
       {
-        modal == true ? <Modal color={'skyblue'} coat={coat}></Modal> : null
+        modal == true ? <Modal color={'skyblue'} coat={coat} setCoat={setCoat}></Modal> : null
       }
     </div>
   );
@@ -77,13 +77,16 @@ function App() {
 // const Modal = () => {}
 
 // how to make components
+
+// fix only modal change not whole thing
 function Modal(props){
   return (
       <div className='modal' style={{background : props.color}}>
         <h4> {props.coat[0]} </h4>
         <p> date </p>
         <p> details </p>
-        <button> fix </button>
+        <button onClick={()=>{ props.setCoat(['여자 코트 추천', '여자 코트 추천', '아이 코트 추천'])
+        }}> fix </button>
       </div>
   )
 }
