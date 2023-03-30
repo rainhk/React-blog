@@ -10,6 +10,7 @@ function App() {
   let [good, good_i] = useState([0,0,0]);
   let [modal, setModal] = useState(false);
   let [current, setCurrent] = useState('');
+  let [input, setInput] = useState('');
 
   return (
     <div className="App">
@@ -58,7 +59,9 @@ function App() {
         coat.map(function(a, i){
           return (
           <div className='list' key={i}>
-          <h4 onClick={()=> {setModal(!modal); setCurrent(coat[i]);}}> {coat[i]} <span onClick={() => {
+          <h4 onClick={()=> {setModal(!modal); setCurrent(coat[i]);}}> {coat[i]} 
+          <span onClick={(e) => {
+            e.stopPropagation();
             let copy = [...good];
             copy[i] = copy[i] + 1;
             good_i(copy);  
@@ -67,6 +70,9 @@ function App() {
         </div>)
         })
       }
+
+      <input onChange={(e)=>{ setInput(e.target.value);}}></input>
+
 
       {
         modal == true ? <Modal color={'skyblue'} coat={current}></Modal> : null
