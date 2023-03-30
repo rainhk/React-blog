@@ -9,6 +9,7 @@ function App() {
   let [coat, setCoat] = useState(['남자 코트 추천', '여자 코트 추천', '아이 코트 추천']);
   let [good, good_i] = useState([0,0,0]);
   let [modal, setModal] = useState(false);
+  let [current, setCurrent] = useState('');
 
   return (
     <div className="App">
@@ -57,7 +58,7 @@ function App() {
         coat.map(function(a, i){
           return (
           <div className='list' key={i}>
-          <h4 onClick={()=> {setModal(!modal)}}> {coat[i]} <span onClick={() => {
+          <h4 onClick={()=> {setModal(!modal); setCurrent(coat[i]);}}> {coat[i]} <span onClick={() => {
             let copy = [...good];
             copy[i] = copy[i] + 1;
             good_i(copy);  
@@ -68,7 +69,7 @@ function App() {
       }
 
       {
-        modal == true ? <Modal color={'skyblue'} coat={coat} setCoat={setCoat}></Modal> : null
+        modal == true ? <Modal color={'skyblue'} coat={current}></Modal> : null
       }
     </div>
   );
@@ -77,16 +78,12 @@ function App() {
 // const Modal = () => {}
 
 // how to make components
-
-// fix only modal change not whole thing
 function Modal(props){
   return (
       <div className='modal' style={{background : props.color}}>
-        <h4> {props.coat[0]} </h4>
+        <h4> {props.coat} </h4>
         <p> date </p>
         <p> details </p>
-        <button onClick={()=>{ props.setCoat(['여자 코트 추천', '여자 코트 추천', '아이 코트 추천'])
-        }}> fix </button>
       </div>
   )
 }
