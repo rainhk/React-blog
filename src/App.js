@@ -63,7 +63,9 @@ function App() {
           <div variant="contained" style={{float: 'right'}}>
             <button onClick={(e) => {
               e.stopPropagation();
-              setCoat(coat => coat.filter((a, i)=> i != i));  
+              let copy = [...coat];
+              copy.splice(i, 1);
+              setCoat(copy);  
             }}> Delete </button>
           </div>
           <span onClick={(e) => {
