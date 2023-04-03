@@ -60,6 +60,12 @@ function App() {
           return (
           <div className='list' key={i}>
           <h4 onClick={()=> {setModal(!modal); setCurrent(coat[i]);}}> {coat[i]} 
+          <div variant="contained" style={{float: 'right'}}>
+            <button onClick={(e) => {
+              e.stopPropagation();
+              setCoat(coat => coat.filter((a, i)=> i != i));  
+            }}> Delete </button>
+          </div>
           <span onClick={(e) => {
             e.stopPropagation();
             let copy = [...good];
@@ -71,7 +77,10 @@ function App() {
         })
       }
 
-      <input onChange={(e)=>{ setInput(e.target.value);}}></input>
+      <input onKeyDown={(e)=>{ 
+        if (e.key === 'Enter'){
+        let copy = [e.target.value, ...coat];
+        setCoat(copy);}}}></input>
 
 
       {
