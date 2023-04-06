@@ -12,6 +12,11 @@ function App() {
   let [current, setCurrent] = useState('');
   let [input, setInput] = useState('');
 
+  let newDate = new Date();
+  let date = newDate.getDate();
+  let month = newDate.getMonth();
+  let year = newDate.getFullYear();
+
   return (
     <div className="App">
       <div className="black-nav"> 
@@ -63,9 +68,9 @@ function App() {
           <div variant="contained" style={{float: 'right'}}>
             <button onClick={(e) => {
               e.stopPropagation();
-              let copy = [...coat];
-              copy.splice(i, 1);
-              setCoat(copy);  
+              let copy_1 = [...coat];
+              copy_1.splice(i, 1);
+              setCoat(copy_1);  
             }}> Delete </button>
           </div>
           <span onClick={(e) => {
@@ -74,15 +79,21 @@ function App() {
             copy[i] = copy[i] + 1;
             good_i(copy);  
           }}>👍</span> {good[i]} </h4>
-          <p>1/4/2023</p>
+
+          <p> {month} / {date} / {year} </p>
         </div>)
         })
       }
 
       <input onKeyDown={(e)=>{ 
         if (e.key === 'Enter'){
-        let copy = [e.target.value, ...coat];
-        setCoat(copy);}}}></input>
+          if (!e.target.value.trim() == ""){
+            let copy = [e.target.value, ...coat];
+            setCoat(copy);
+            let copy_2 = [...good];
+            copy_2 = [0].concat(copy_2)
+            good_i(copy_2)
+        }}}}></input>
 
 
       {
